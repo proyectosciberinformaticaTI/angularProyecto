@@ -1,0 +1,15 @@
+<h2>Options</h2>
+
+<button mat-button (click)="show='chat'">Show Chat</button>
+<button mat-button (click)="debug=true">Show Chat Debug</button>
+<button mat-button (click)="show='stories'">Manage Stories</button>
+<button mat-button (click)="show='bots'">Manage Bots</button>
+
+<h3 *ngIf="bot">BOT SELECTED:
+{{bot.botName}} , {{bot.username}} , {{bot.password}}
+</h3>
+<ng-ai-chatbot-chat class="chat-window" [bot]="bot" [debug]="debug" *ngIf="show === 'chat'"></ng-ai-chatbot-chat>
+<ng-ai-chatbot-stories class="chat-window" [bot]="bot" *ngIf="show === 'stories'"></ng-ai-chatbot-stories>
+<ng-ai-chatbot-bots class="chat-window"
+[afterSave]="setBotStories.bind(this)"
+*ngIf="show === 'bots'" [storiesBot]="setBotStories.bind(this)" ></ng-ai-chatbot-bots>
